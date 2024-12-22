@@ -15,7 +15,7 @@ class Project(ConanFile):
     def configure(self):
         # We can control the options of our dependencies based on current options
         self.options["soci"].with_sqlite3 = True
-        self.options["soci"].with_boost = True
+        self.options["soci"].with_boost = True # commenting out this line fixes build problems
         self.options["catch2"].with_main = True
         self.options["catch2"].with_benchmark = True
 
