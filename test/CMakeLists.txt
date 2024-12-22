@@ -3,8 +3,6 @@ add_executable(_test
         )
 find_package(Catch2)
 target_link_libraries(_test
-        myproject_options
-        myproject_warnings
         cxx_template
         Catch2::Catch2WithMain
         )

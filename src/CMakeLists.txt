@@ -8,29 +8,9 @@
 add_library(cxx_template hello.cxx)
 
 
-add_library(myproject::cxx_template ALIAS cxx_template)
-
-
 find_package(Boost)
+find_package(SOCI)      
 target_link_libraries(cxx_template PUBLIC
-        boost::boost
-        myproject_options
-        myproject_warnings
+        SOCI::soci_sqlite3_static
+        Boost::boost
 )
-
-target_include_directories(cxx_template INTERFACE $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
-        $<BUILD_INTERFACE:${PROJECT_BINARY_DIR}/include>)
-
-target_compile_features(cxx_template PUBLIC cxx_std_20)
-
-set_target_properties(
-        cxx_template
-        PROPERTIES VERSION ${PROJECT_VERSION}
-        CXX_VISIBILITY_PRESET hidden
-        VISIBILITY_INLINES_HIDDEN YES)
-
-install(FILES
-        hello.hxx
-        DESTINATION include/cxx_template
-        )
-install(TARGETS cxx_template DESTINATION lib)
